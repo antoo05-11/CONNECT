@@ -1,0 +1,8 @@
+5 //Size of map
+5 //Number of colors
+5 //Time of level
+1 0 0 0 0
+1 0 0 0 0
+1 0 0 0 0
+1 0 0 0 0
+1 0 0 0 0
