@@ -29,7 +29,72 @@ double ratio = 1; //Ratio = Time_pass / Max_time
 
 TimeLine time_left;
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[]);
+
+void LoadTexture(SDL_Renderer* &renderer, button* & game_button, BaseObject& quit_image, BaseObject* & game_text, 
+                 BaseObject* & image)
+{
+    std::ifstream file("assets/tiles_and_way/infoColors.txt");
+    if (!file.is_open()) logSDLError("std::ifstream", true);
+    int num_of_colors;
+    file >> num_of_colors;
+    file.close();
+    image = new BaseObject[500];
+    for (int i = 1; i <= num_of_colors; i++)
+    {
+        image[100 + i].loadImage("assets/tiles_and_way/vertical_way/" + std::to_string(i) + ".png", renderer,
+                                 &WHITE_COLOR);
+        image[400 + i].loadImage("assets/tiles_and_way/horizontal_way/" + std::to_string(i) + ".png", renderer,
+                                 &WHITE_COLOR);
+        image[20 + i].loadImage("assets/tiles_and_way/bridge_way/up/" + std::to_string(20 + i) + ".png", renderer,
+                                &WHITE_COLOR);
+        image[40 + i].loadImage("assets/tiles_and_way/bridge_way/down/" + std::to_string(20 + i) + ".png", renderer,
+                                &WHITE_COLOR);
+        image[60 + i].loadImage("assets/tiles_and_way/bridge_way/left/" + std::to_string(20 + i) + ".png", renderer,
+                                &WHITE_COLOR);
+        image[80 + i].loadImage("assets/tiles_and_way/bridge_way/right/" + std::to_string(20 + i) + ".png", renderer,
+                                &WHITE_COLOR);
+        image[200 + i].loadImage("assets/tiles_and_way/bridge_way/middle_vertical/" + std::to_string(20 + i) + ".png",
+                                 renderer, &WHITE_COLOR);
+        image[300 + i].loadImage("assets/tiles_and_way/bridge_way/middle_horizontal/" + std::to_string(20 + i) + ".png",
+                                 renderer, &WHITE_COLOR);
+    }
+
+    image[1].loadImage("assets/tiles_and_way/wall/1.png", renderer, &BLACK_COLOR);
+    image[2].loadImage("assets/tiles_and_way/wall/2.png", renderer, &WHITE_COLOR);
+
+    quit_image.loadImage("assets/quit_image/0.png", renderer, &GREEN_COLOR);
+
+    game_button = new button[12];
+    for (int i = 0; i < 12; i++)
+    {
+        game_button[i].LoadButton(renderer,
+                                  "assets/button/" + std::to_string(i) + ".png",
+                                  "assets/button/" + std::to_string(i + 20) + ".png");
+    }
+
+    game_text = new BaseObject[6];
+
+    game_text[GET_NAME_REQUEST].LoadFont("assets/font/URW Geometric Cond W03 Heavy.ttf", 24);
+    game_text[RETURN_REQUEST].LoadFont("assets/font/URW Geometric Cond W03 Heavy.ttf", 24);
+    game_text[QUIT_REQUEST].LoadFont("assets/font/URW Geometric Cond W03 Heavy.ttf", 24);
+    game_text[PLAYER_NAME].LoadFont("assets/font/URW Geometric Cond W03 Heavy.ttf", 24);
+    game_text[GET_NAME_REQUEST].LoadText("ENTER YOUR NAME: ", BLACK_COLOR, renderer);
+    game_text[RETURN_REQUEST].LoadText("DO YOU WANT TO RETURN?", BLACK_COLOR, renderer);
+    game_text[QUIT_REQUEST].LoadText("DO YOU WANT TO QUIT?", BLACK_COLOR, renderer);
+}
+
+void DestroyEverything()
+{
+    delete[] game_button;
+    delete[] image;
+    delete[] game_text;
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
+    SDL_Quit();
+}
+
+int SDL_main(int argc, char* argv[])
 {
     init_SDL();
     LoadTexture(renderer, game_button, quit_image, game_text, image);
@@ -46,7 +111,7 @@ int main(int argc, char* argv[])
 
     std::string name_song_string[10] = {
         "Default song",
-         "Everytime",
+        "Everytime",
         "Let her go",
         "We don't talk any more",
         "Pho da len den",
@@ -99,7 +164,7 @@ int main(int argc, char* argv[])
             SDL_RenderClear(renderer);
             while (SDL_PollEvent(&e) != 0)
             {
-               name_frame.HandleEvent(e, GAME_STATUS, playing_timer, mouse_button_down_pos);
+                name_frame.HandleEvent(e, GAME_STATUS, playing_timer, mouse_button_down_pos);
             }
 
             name_frame.Render();
@@ -349,67 +414,4 @@ int main(int argc, char* argv[])
     }
 
     return 0;
-}
-
-void LoadTexture(SDL_Renderer* &renderer, button* & game_button, BaseObject& quit_image, BaseObject* & game_text, 
-                 BaseObject* & image)
-{
-    std::ifstream file("assets/tiles_and_way/infoColors.txt");
-    if (!file.is_open()) logSDLError("std::ifstream", true);
-    int num_of_colors;
-    file >> num_of_colors;
-    file.close();
-    image = new BaseObject[500];
-    for (int i = 1; i <= num_of_colors; i++)
-    {
-        image[100 + i].loadImage("assets/tiles_and_way/vertical_way/" + std::to_string(i) + ".png", renderer,
-                                 &WHITE_COLOR);
-        image[400 + i].loadImage("assets/tiles_and_way/horizontal_way/" + std::to_string(i) + ".png", renderer,
-                                 &WHITE_COLOR);
-        image[20 + i].loadImage("assets/tiles_and_way/bridge_way/up/" + std::to_string(20 + i) + ".png", renderer,
-                                &WHITE_COLOR);
-        image[40 + i].loadImage("assets/tiles_and_way/bridge_way/down/" + std::to_string(20 + i) + ".png", renderer,
-                                &WHITE_COLOR);
-        image[60 + i].loadImage("assets/tiles_and_way/bridge_way/left/" + std::to_string(20 + i) + ".png", renderer,
-                                &WHITE_COLOR);
-        image[80 + i].loadImage("assets/tiles_and_way/bridge_way/right/" + std::to_string(20 + i) + ".png", renderer,
-                                &WHITE_COLOR);
-        image[200 + i].loadImage("assets/tiles_and_way/bridge_way/middle_vertical/" + std::to_string(20 + i) + ".png",
-                                 renderer, &WHITE_COLOR);
-        image[300 + i].loadImage("assets/tiles_and_way/bridge_way/middle_horizontal/" + std::to_string(20 + i) + ".png",
-                                 renderer, &WHITE_COLOR);
-    }
-
-    image[1].loadImage("assets/tiles_and_way/wall/1.png", renderer, &BLACK_COLOR);
-    image[2].loadImage("assets/tiles_and_way/wall/2.png", renderer, &WHITE_COLOR);
-
-    quit_image.loadImage("assets/quit_image/0.png", renderer, &GREEN_COLOR);
-
-    game_button = new button[12];
-    for (int i = 0; i < 12; i++)
-    {
-        game_button[i].LoadButton(renderer,
-                                  "assets/button/" + std::to_string(i) + ".png",
-                                  "assets/button/" + std::to_string(i + 20) + ".png");
-    }
-
-    game_text = new BaseObject[6];
-
-    game_text[GET_NAME_REQUEST].LoadFont("assets/font/URW Geometric Cond W03 Heavy.ttf", 24);
-    game_text[RETURN_REQUEST].LoadFont("assets/font/URW Geometric Cond W03 Heavy.ttf", 24);
-    game_text[QUIT_REQUEST].LoadFont("assets/font/URW Geometric Cond W03 Heavy.ttf", 24);
-    game_text[PLAYER_NAME].LoadFont("assets/font/URW Geometric Cond W03 Heavy.ttf", 24);
-    game_text[GET_NAME_REQUEST].LoadText("ENTER YOUR NAME: ", BLACK_COLOR, renderer);
-    game_text[RETURN_REQUEST].LoadText("DO YOU WANT TO RETURN?", BLACK_COLOR, renderer);
-    game_text[QUIT_REQUEST].LoadText("DO YOU WANT TO QUIT?", BLACK_COLOR, renderer);
-}
-
-void DestroyEverything()
-{
-    delete[] game_button;
-    delete[] image;
-    delete[] game_text;
-    SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
-    SDL_Quit();
 }
