@@ -52,4 +52,4 @@
 ### Một số nhược điểm và hướng phát triển
 - Các map vẫn còn cố định về màu sắc các ô tròn, em sẽ bổ sung random màu ở mỗi map.
 - Mỗi level mới chỉ có một map cố định, em dự định sẽ thêm nhiều map cho một level, sau đó sử dụng random map.
-- Vì ban đầu em còn chưa thạo nên phần logic game "HandleEvent" chính em còn sử dụng hàm thường, do đó nhìn code hơi rườm rà. Em sẽ thay đổi sang class và tạo lớp game Engine giúp code gọn hơn.
+- Vì ban đầu em còn chưa thạo nên phần logic game "HandleEvent" chính em còn sử dụng hàm thường, do đó nhìn code hơi rườm rà, các biến khởi tạo còn khá lộn xộn. Em sẽ thay đổi sang class và tạo lớp GameEngine giúp code gọn hơn.
