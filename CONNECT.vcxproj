@@ -150,7 +150,6 @@
     <ClCompile Include="button.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="HandleEvent.cpp" />
-    <ClCompile Include="HandleSettingEvent.cpp" />
     <ClCompile Include="HandleTime.cpp" />
     <ClCompile Include="HighScoreBox.cpp" />
     <ClCompile Include="main.cpp" />
@@ -168,7 +167,6 @@
     <ClInclude Include="CommonFunc.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="HandleEvent.h" />
-    <ClInclude Include="HandleSettingEvent.h" />
     <ClInclude Include="HandleSmallEvents.h" />
     <ClInclude Include="HandleTime.h" />
     <ClInclude Include="HighScoreBox.h" />

@@ -1,5 +1,3 @@
-taylor
-1
 test
 1
 test game
@@ -18,5 +16,7 @@ tttttt
 9
 thanh an
 15
+thanh an
+18
 thanh an
 20
