@@ -54,4 +54,4 @@
 - Mỗi level mới chỉ có một map cố định, em dự định sẽ thêm nhiều map cho một level, sau đó sử dụng random map.
 - Vì ban đầu em còn chưa thạo nên phần logic game "HandleEvent" chính em còn sử dụng hàm thường, do đó nhìn code hơi rườm rà, các biến khởi tạo còn khá lộn xộn. Em sẽ thay đổi sang class và tạo lớp GameEngine giúp code gọn hơn.
 ## Tự đánh giá
-Em tự đánh giá cho bài mình 8.5/10 điểm, em cảm ơn thầy cô ạ.
+Em tự đánh giá cho bài mình 8.5-9.0/10 điểm, em cảm ơn thầy cô ạ.
